@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="ckb" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0033A1">
+<title>ڕاسان — پۆرتاڵی فرۆشگاکان (دیمۆ)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#0033A1;--blue2:#2152c9;--sky:#eaf0ff;--cream:#f7f5f0;--ink:#14213d;--muted:#667089;--line:#e3e7ef;--ok:#11795a;--okbg:#e2f5ed;--warn:#a85607;--warnbg:#fff2df;--bad:#b42318;--badbg:#fdecea;--card:#fff;--r:18px}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--cream)}
+body{font-family:'Noto Sans Arabic',system-ui,sans-serif;color:var(--ink);font-size:15px;line-height:1.65;-webkit-tap-highlight-color:transparent}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font:inherit;color:inherit}
+.demo-bar{background:#111827;color:#fde68a;font-size:12px;text-align:center;padding:6px 14px;line-height:1.5}
+.wrap{max-width:540px;margin:0 auto;min-height:100vh;position:relative}
+
+/* login */
+#login{padding:28px 18px 40px}
+.hero{background:linear-gradient(160deg,var(--blue),#0a1f63);color:#fff;border-radius:26px;padding:26px 20px 24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:auto -40px -60px auto;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.07)}
+.logo{width:48px;height:48px;border-radius:14px;background:#fff;color:var(--blue);display:grid;place-items:center;font-weight:800;font-size:22px;flex:none}
+.hero h1{font-size:22px;line-height:1.4;margin:16px 0 8px}
+.hero p{opacity:.85;font-size:14px}
+.form{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin-top:-14px;position:relative;z-index:1;margin-inline:10px}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;background:#fbfcfe;outline:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);background:#fff}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 16px;border-radius:14px;font-weight:700;background:var(--blue);color:#fff}
+.btn:active{transform:scale(.99)}
+.btn.ghost{background:var(--sky);color:var(--blue)}
+.btn.line{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.btn.sm{width:auto;padding:8px 14px;font-size:13px;border-radius:11px}
+.note{font-size:12px;color:var(--muted);text-align:center;margin-top:10px}
+.langs{display:inline-flex;background:rgba(255,255,255,.16);border-radius:999px;padding:3px}
+.langs button{padding:4px 11px;border-radius:999px;font-size:12px;color:#fff;font-weight:700}
+.langs button.on{background:#fff;color:var(--blue)}
+.langs.dark{background:var(--sky)}
+.langs.dark button{color:var(--blue)}
+.langs.dark button.on{background:var(--blue);color:#fff}
+
+/* app */
+#app{display:none;padding-bottom:92px}
+header.top{background:var(--blue);color:#fff;padding:14px 16px 20px;border-radius:0 0 24px 24px}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand .logo{width:40px;height:40px;font-size:19px;border-radius:12px}
+.brand b{display:block;font-size:16px;line-height:1.3}
+.brand small{opacity:.8;font-size:12px;display:block}
+.who{margin-top:14px;font-size:13px;opacity:.92;display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:#4ade80;display:inline-block}
+main{padding:16px}
+.view{display:none;animation:fade .2s ease}
+.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+h2{font-size:19px;margin:4px 0 4px}
+.sub{color:var(--muted);font-size:13px;margin-bottom:14px}
+h3{font-size:15px;margin-bottom:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:12px}
+.card.blue{background:var(--blue);color:#fff;border:0}
+.card.blue .muted{color:rgba(255,255,255,.8)}
+.muted{color:var(--muted);font-size:13px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.big{font-size:24px;font-weight:800;line-height:1.3}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+.p-ok{background:var(--okbg);color:var(--ok)}
+.p-warn{background:var(--warnbg);color:var(--warn)}
+.p-bad{background:var(--badbg);color:var(--bad)}
+.p-blue{background:var(--sky);color:var(--blue)}
+.bar{height:8px;background:var(--sky);border-radius:99px;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;background:var(--blue);border-radius:99px}
+.card.blue .bar{background:rgba(255,255,255,.2)}
+.card.blue .bar i{background:#fff}
+.action{display:flex;align-items:center;gap:12px;text-align:start;width:100%}
+.action .ic{width:44px;height:44px;border-radius:13px;background:var(--sky);color:var(--blue);display:grid;place-items:center;flex:none}
+.action b{display:block;font-size:15px}
+.chev{margin-inline-start:auto;color:var(--muted)}
+[dir=rtl] .chev{transform:scaleX(-1)}
+
+/* products */
+.search{position:relative;margin-bottom:12px}
+.search input{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px 40px 12px 14px;background:#fff;outline:none}
+[dir=ltr] .search input{padding:12px 14px 12px 40px}
+.search svg{position:absolute;top:50%;transform:translateY(-50%);inset-inline-start:13px;color:var(--muted)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;padding:7px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:600}
+.chip.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.prod{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:10px}
+.tile{width:58px;height:58px;border-radius:14px;display:grid;place-items:center;font-size:28px;flex:none}
+.prod .info{flex:1;min-width:0}
+.prod b{display:block;font-size:14.5px;line-height:1.4}
+.prod .price{font-weight:800;color:var(--blue);font-size:14px;margin-top:2px}
+.step{display:flex;align-items:center;gap:2px;background:var(--sky);border-radius:12px;padding:3px;flex:none}
+.step button{width:32px;height:32px;border-radius:10px;font-size:19px;font-weight:700;color:var(--blue);display:grid;place-items:center}
+.step button:active{background:#d6e1ff}
+.step span{min-width:26px;text-align:center;font-weight:800}
+.addbtn{background:var(--blue);color:#fff;border-radius:12px;padding:8px 14px;font-weight:700;font-size:13px;flex:none}
+
+/* cart */
+.line-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.line-item:last-child{border-bottom:0}
+.line-item .info{flex:1;min-width:0}
+.line-item b{font-size:14px;display:block;line-height:1.4}
+.empty{text-align:center;padding:30px 10px;color:var(--muted)}
+.empty .e{font-size:40px;margin-bottom:6px}
+.days{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.day{border:1.5px solid var(--line);border-radius:14px;padding:10px;text-align:center;background:#fff}
+.day b{display:block}
+.day.on{border-color:var(--blue);background:var(--sky);color:var(--blue)}
+.warnbox{background:var(--warnbg);color:var(--warn);border-radius:12px;padding:10px 12px;font-size:13px;margin:10px 0;display:none}
+.sum{display:flex;justify-content:space-between;font-size:14px;padding:4px 0}
+.sum.t{font-size:17px;font-weight:800;border-top:1px solid var(--line);margin-top:6px;padding-top:10px}
+
+/* toggle */
+.tog{width:50px;height:30px;border-radius:99px;background:#cfd6e4;position:relative;flex:none;transition:.2s}
+.tog:after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.tog.on{background:var(--ok)}
+.tog.on:after{inset-inline-start:23px}
+
+/* orders */
+.order{padding:12px 0;border-bottom:1px solid var(--line)}
+.order:last-child{border-bottom:0}
+
+/* factory */
+.kpi{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px}
+.kpi .big{font-size:20px;color:var(--blue)}
+.hbar{margin-bottom:10px}
+.hbar .row{font-size:13px}
+.area{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.area:last-child{border-bottom:0}
+.area .n{margin-inline-start:auto;font-weight:700}
+.fbanner{background:#0b1b4d}
+
+/* nav */
+nav.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);z-index:20;padding-bottom:env(safe-area-inset-bottom)}
+nav.bottom .in{max-width:540px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+nav.bottom button{padding:8px 2px 9px;font-size:11px;font-weight:600;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:2px;position:relative}
+nav.bottom button.on{color:var(--blue)}
+nav.bottom svg{width:23px;height:23px}
+.badge{position:absolute;top:4px;inset-inline-end:calc(50% - 22px);background:var(--bad);color:#fff;font-size:10px;min-width:18px;height:18px;border-radius:99px;display:none;place-items:center;padding:0 4px;font-weight:800}
+
+/* modal + toast */
+.modal{position:fixed;inset:0;background:rgba(10,20,50,.5);display:none;align-items:flex-end;justify-content:center;z-index:50;padding:16px}
+.modal.on{display:flex}
+.sheet{background:#fff;border-radius:24px;padding:24px 20px;width:100%;max-width:500px;text-align:center;animation:up .25s ease}
+@keyframes up{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+.sheet .ok{width:64px;height:64px;border-radius:50%;background:var(--okbg);color:var(--ok);display:grid;place-items:center;margin:0 auto 12px;font-size:32px}
+.toast{position:fixed;bottom:96px;left:50%;transform:translateX(-50%) translateY(20px);background:#111827;color:#fff;padding:10px 18px;border-radius:12px;font-size:13px;opacity:0;transition:.25s;z-index:60;pointer-events:none;white-space:nowrap}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<div class="demo-bar" data-t="demoBar"></div>
+<div class="wrap">
+
+<!-- LOGIN -->
+<section id="login">
+  <div class="hero">
+    <div class="row">
+      <div class="logo">ڕ</div>
+      <div class="langs" data-langs></div>
+    </div>
+    <h1 data-t="loginTitle"></h1>
+    <p data-t="loginSub"></p>
+  </div>
+  <div class="form">
+    <div class="field"><label data-t="phone"></label><input type="tel" value="0770 123 4567" inputmode="tel"></div>
+    <div class="field"><label data-t="code"></label><input value="HLB-0217"></div>
+    <button class="btn" onclick="loginShop()" data-t="loginBtn"></button>
+    <div style="height:10px"></div>
+    <button class="btn ghost" onclick="loginFactory()" data-t="loginFactory"></button>
+    <p class="note" data-t="loginNote"></p>
+  </div>
+</section>
+
+<!-- APP -->
+<section id="app">
+  <header class="top" id="topbar">
+    <div class="top-row">
+      <div class="brand"><div class="logo">ڕ</div><div><b data-t="brand"></b><small id="brandSub"></small></div></div>
+      <div class="langs" data-langs></div>
+    </div>
+    <div class="who"><span class="dot"></span><span id="whoName"></span></div>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <div class="view" id="v-home">
+      <h2 data-t="hello"></h2>
+      <p class="sub" data-t="helloSub"></p>
+      <div id="weekStatus"></div>
+      <div class="card">
+        <div class="row"><div><div class="muted" data-t="nextDelivery"></div><div class="big" id="nextDay"></div></div><span class="pill p-blue" data-t="areaName"></span></div>
+        <p class="muted" style="margin-top:6px" data-t="deliveryDays"></p>
+        <p class="muted" data-t="cutoff"></p>
+      </div>
+      <div class="card">
+        <button class="action" onclick="loadWeekly()">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></span>
+          <span><b data-t="quickWeekly"></b><span class="muted" data-t="quickWeeklySub"></span></span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="card">
+        <button class="action" onclick="go('products')">
+          <span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+          <span><b data-t="browse"></b><span class="muted" data-t="browseSub"></span></span>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="card blue" id="balCard"></div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="view" id="v-products">
+      <h2 data-t="products"></h2>
+      <p class="sub" data-t="productsSub"></p>
+      <div class="search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="q" oninput="renderProducts()" data-tp="search">
+      </div>
+      <div class="chips" id="cats"></div>
+      <div id="plist"></div>
+    </div>
+
+    <!-- CART -->
+    <div class="view" id="v-cart">
+      <h2 data-t="cartTitle"></h2>
+      <p class="sub" data-t="cartSub"></p>
+      <div class="card" id="cartItems"></div>
+      <div id="cartRest">
+        <div class="card">
+          <h3 data-t="deliveryDay"></h3>
+          <div class="days" id="days"></div>
+          <div class="field" style="margin:14px 0 0"><label data-t="notes"></label><textarea id="notes" rows="2" data-tp="notesPh"></textarea></div>
+        </div>
+        <div class="card">
+          <div class="sum"><span data-t="itemsCount"></span><b id="sCount"></b></div>
+          <div class="sum"><span data-t="cartonsCount"></span><b id="sCartons"></b></div>
+          <div class="sum t"><span data-t="total"></span><span id="sTotal"></span></div>
+          <div class="warnbox" id="limitWarn" data-t="limitWarn"></div>
+          <div style="height:12px"></div>
+          <button class="btn" onclick="submitOrder()" data-t="submit"></button>
+          <div style="height:8px"></div>
+          <button class="btn line" onclick="saveWeekly()" data-t="saveWeekly"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEKLY -->
+    <div class="view" id="v-weekly">
+      <h2 data-t="weeklyTitle"></h2>
+      <p class="sub" data-t="weeklySub"></p>
+      <div class="card">
+        <div class="row">
+          <div><b data-t="autoRepeat"></b><p class="muted" data-t="autoRepeatSub"></p></div>
+          <button class="tog" id="autoTog" onclick="toggleAuto()" aria-label="auto"></button>
+        </div>
+        <p class="pill p-ok" id="autoInfo" style="margin-top:10px;display:none" data-t="autoInfo"></p>
+      </div>
+      <div class="card" id="weeklyItems"></div>
+      <button class="btn" onclick="loadWeekly()" data-t="loadWeekly"></button>
+    </div>
+
+    <!-- ACCOUNT -->
+    <div class="view" id="v-account">
+      <h2 data-t="accountTitle"></h2>
+      <p class="sub" data-t="accountSub"></p>
+      <div class="card blue" id="balCard2"></div>
+      <div class="grid2" style="margin-bottom:12px">
+        <div class="kpi"><div class="muted" data-t="lastPayment"></div><div class="big" style="font-size:16px" id="lastPay"></div></div>
+        <div class="kpi"><div class="muted" data-t="ordersMonth"></div><div class="big" style="font-size:16px" id="ordMonth"></div></div>
+      </div>
+      <div class="card"><h3 data-t="orders"></h3><div id="orderList"></div></div>
+      <button class="btn ghost" onclick="loginFactory()" data-t="factoryBtn"></button>
+      <div style="height:8px"></div>
+      <button class="btn line" onclick="logout()" data-t="logout"></button>
+    </div>
+
+    <!-- FACTORY -->
+    <div class="view" id="v-factory">
+      <h2 data-t="factoryTitle"></h2>
+      <p class="sub" data-t="factorySub"></p>
+      <div class="grid2" style="margin-bottom:12px" id="kpis"></div>
+      <div class="card"><h3 data-t="needProduce"></h3><div id="produce"></div></div>
+      <div class="card"><h3 data-t="byArea"></h3><div id="areas"></div></div>
+      <div class="card"><h3 data-t="incoming"></h3><div id="incoming"></div></div>
+      <button class="btn ghost" onclick="backToShop()" data-t="backShop"></button>
+      <div style="height:8px"></div>
+      <button class="btn line" onclick="logout()" data-t="logout"></button>
+    </div>
+  </main>
+
+  <nav class="bottom" id="nav"><div class="in">
+    <button data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg><span data-t="navHome"></span></button>
+    <button data-go="products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span data-t="navProducts"></span></button>
+    <button data-go="cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.6 12.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H6"/></svg><span data-t="navCart"></span><i class="badge" id="badge"></i></button>
+    <button data-go="weekly"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg><span data-t="navWeekly"></span></button>
+    <button data-go="account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span data-t="navAccount"></span></button>
+  </div></nav>
+</section>
+</div>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="sheet">
+    <div class="ok">✓</div>
+    <h2 data-t="successTitle"></h2>
+    <p class="muted" id="successBody" style="margin:6px 0 16px"></p>
+    <button class="btn" onclick="closeModal()" data-t="ok"></button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const L={
+ku:{demoBar:"دیمۆی پێشنیارکراوە لەلایەن Mhamad Tahir — بەرهەم، نرخ و ناوی فرۆشگاکان تەنها نموونەن",brand:"ڕاسان",brandShop:"پۆرتاڵی فرۆشگا و مارکێتەکان",brandFactory:"داشبۆردی کارگە",
+loginTitle:"بەخێربێیت بۆ پۆرتاڵی داواکاری ڕاسان",loginSub:"مارکێت و فرۆشگاکان لێرەوە داواکاری هەفتانەیان دەنێرن — بەبێ تەلەفۆن و بەبێ هەڵە.",phone:"ژمارەی مۆبایل",code:"کۆدی فرۆشگا",loginBtn:"چوونەژوورەوە وەک فرۆشگا",loginFactory:"چوونەژوورەوە وەک بەڕێوەبەری کارگە",loginNote:"بۆ دیمۆ، تەنها یەکێک لە دوگمەکان دابگرە.",
+shopName:"مارکێتی نموونە — هەڵەبجە",factoryName:"بەڕێوەبەری فرۆشتن — کارگەی ڕاسان",
+navHome:"سەرەکی",navProducts:"بەرهەمەکان",navCart:"داواکاری",navWeekly:"هەفتانە",navAccount:"ئەکاونت",
+hello:"سڵاو، بەخێربێیتەوە 👋",helloSub:"هەموو شتێکی داواکارییەکانت لێرەدایە.",weekNotSent:"هێشتا داواکاری ئەم هەفتەیەت نەناردووە",weekNotSentSub:"دوا کات بۆ گەیاندنی ڕۆژی {d}: ڕۆژی پێشتر، کاتژمێر ٨ی ئێوارە.",weekSent:"داواکاری ئەم هەفتەیە نێردرا",
+nextDelivery:"گەیاندنی داهاتوو",areaName:"هەڵەبجە",deliveryDays:"ڕۆژانی گەیاندن بۆ ناوچەکەت: شەممە و سێشەممە.",cutoff:"دوا کاتی ناردنی داواکاری: ڕۆژی پێشتر، کاتژمێر ٨ی ئێوارە.",
+quickWeekly:"داواکاری هەفتانەکەم دووبارە بکەرەوە",quickWeeklySub:"بە یەک کرتە، لیستی هەمیشەییت دەچێتە ناو داواکاری.",browse:"بینینی هەموو بەرهەمەکان",browseSub:"ماست، پەنیر، دۆ، زەیت و زیاتر",
+balance:"قەرزی ماوە",limit:"سنووری قەرز",of:"لە",
+products:"بەرهەمەکان",productsSub:"نرخەکان نرخی جوملەن بۆ هەر کارتۆنێک.",search:"گەڕان بۆ بەرهەم…",all:"هەمووی",carton:"کارتۆن",pcs:"دانە",add:"زیادکردن",noResults:"هیچ بەرهەمێک نەدۆزرایەوە.",
+cartTitle:"داواکاری ئەم هەفتەیە",cartSub:"پێداچوونەوە بکە، ڕۆژی گەیاندن هەڵبژێرە و بینێرە.",cartEmpty:"هێشتا هیچ بەرهەمێکت هەڵنەبژاردووە.",goProducts:"بڕۆ بۆ بەرهەمەکان",
+deliveryDay:"ڕۆژی گەیاندن",notes:"تێبینی بۆ کارگە (ئارەزوومەندانە)",notesPh:"بۆ نموونە: تکایە ماستەکە بەیانی زوو بگەیەنن",itemsCount:"جۆری بەرهەم",cartonsCount:"کۆی کارتۆن",total:"کۆی گشتی",
+limitWarn:"ئاگاداری: بەم داواکارییە قەرزەکەت لە سنووری دیاریکراو تێدەپەڕێت. کارگە پێش ناردن پەیوەندیت پێوە دەکات.",submit:"ناردنی داواکاری",saveWeekly:"وەک لیستی هەفتانەم پاشەکەوتی بکە",
+sat:"شەممە",tue:"سێشەممە",fri:"هەینی",mon:"دووشەممە",
+weeklyTitle:"لیستی هەفتانەی من",weeklySub:"ئەو بەرهەمانەی هەموو هەفتەیەک دەیانکڕیت. دەتوانیت دەستکاری بکەیت و بە یەک کرتە بیکەیتە داواکاری.",autoRepeat:"ناردنی خۆکار هەموو هەفتەیەک",autoRepeatSub:"ئەگەر گۆڕانکاری نەکەیت، ئەم لیستە خۆی دەنێردرێت و ڕۆژی پێشتر نامەی بیرخستنەوەت بۆ دێت.",autoInfo:"✓ چالاکە — ناردنی داهاتوو: هەینی، ٨ی ئێوارە",loadWeekly:"بیکە بە داواکاری ئەم هەفتەیە",weeklyEmpty:"لیستی هەفتانەت بەتاڵە. لە پەڕەی داواکارییەوە پاشەکەوتی بکە.",
+accountTitle:"ئەکاونت و حیساب",accountSub:"قەرز، پارەدان و مێژووی داواکارییەکانت.",lastPayment:"دوا پارەدان",ordersMonth:"داواکاری ئەم مانگە",orders:"داواکارییەکانم",paid:"پارەدراوە",unpaid:"پارە نەدراوە",
+st_received:"وەرگیرا",st_prep:"ئامادە دەکرێت",st_out:"لە ڕێگادایە",st_done:"گەیەنرا",
+factoryBtn:"بینینی داشبۆردی کارگە (بۆ بەڕێوەبەر)",logout:"چوونەدەرەوە",
+factoryTitle:"داشبۆردی کارگە",factorySub:"هەموو داواکارییەکانی هەفتە لە یەک شوێن — بۆ پلانی بەرهەمهێنان و بارکردنی ئۆتۆمبێلەکان.",kOrders:"داواکاری ئەم هەفتەیە",kShops:"فرۆشگای چالاک",kCartons:"کۆی کارتۆن",kDebt:"کۆی قەرزی بازاڕ",
+needProduce:"بڕی پێویست بۆ بەرهەمهێنان (کارتۆن)",byArea:"داواکاری بەپێی ناوچە",shops:"فرۆشگا",ordersW:"داواکاری",incoming:"داواکارییە نوێیەکان",next:"هەنگاوی داهاتوو",backShop:"گەڕانەوە بۆ دیمەنی فرۆشگا",
+toastAdded:"زیادکرا بۆ داواکاری",toastWeekly:"لیستی هەفتانە خرایە ناو داواکاری",toastSaved:"وەک لیستی هەفتانە پاشەکەوت کرا",toastEmpty:"سەرەتا بەرهەم زیاد بکە",toastStatus:"دۆخی داواکاری نوێکرایەوە",
+successTitle:"داواکارییەکەت گەیشت!",successBody:"ژمارەی داواکاری: {n}. ڕۆژی {d} دەگەیەنرێت. نامەیەکی پشتڕاستکردنەوە بۆ مۆبایلەکەت دەنێردرێت.",ok:"باشە",today:"ئەمڕۆ",cartonsW:"کارتۆن"},
+ar:{demoBar:"نموذج تجريبي مقترح من Mhamad Tahir — المنتجات والأسعار وأسماء المحلات للعرض فقط",brand:"راسان",brandShop:"بوابة المحلات والأسواق",brandFactory:"لوحة المعمل",
+loginTitle:"أهلاً بك في بوابة طلبات راسان",loginSub:"المحلات والأسواق ترسل طلباتها الأسبوعية من هنا — بدون اتصالات وبدون أخطاء.",phone:"رقم الهاتف",code:"رمز المحل",loginBtn:"الدخول كمحل",loginFactory:"الدخول كمدير المعمل",loginNote:"للتجربة، اضغط أحد الزرين فقط.",
+shopName:"ماركت تجريبي — حلبجة",factoryName:"مدير المبيعات — معمل راسان",
+navHome:"الرئيسية",navProducts:"المنتجات",navCart:"الطلب",navWeekly:"أسبوعي",navAccount:"الحساب",
+hello:"مرحباً بعودتك 👋",helloSub:"كل ما يخص طلباتك في مكان واحد.",weekNotSent:"لم ترسل طلب هذا الأسبوع بعد",weekNotSentSub:"آخر موعد لتوصيل يوم {d}: اليوم السابق، الساعة ٨ مساءً.",weekSent:"تم إرسال طلب هذا الأسبوع",
+nextDelivery:"التوصيل القادم",areaName:"حلبجة",deliveryDays:"أيام التوصيل لمنطقتك: السبت والثلاثاء.",cutoff:"آخر موعد للطلب: اليوم السابق، الساعة ٨ مساءً.",
+quickWeekly:"كرر طلبي الأسبوعي",quickWeeklySub:"بضغطة واحدة تنتقل قائمتك الثابتة إلى الطلب.",browse:"تصفح كل المنتجات",browseSub:"لبن، جبن، شنينة، زيت والمزيد",
+balance:"الرصيد المستحق",limit:"حد الدين",of:"من",
+products:"المنتجات",productsSub:"الأسعار أسعار جملة لكل كرتونة.",search:"ابحث عن منتج…",all:"الكل",carton:"كرتونة",pcs:"قطعة",add:"أضف",noResults:"لم يتم العثور على منتج.",
+cartTitle:"طلب هذا الأسبوع",cartSub:"راجع الطلب، اختر يوم التوصيل ثم أرسل.",cartEmpty:"لم تختر أي منتج بعد.",goProducts:"اذهب إلى المنتجات",
+deliveryDay:"يوم التوصيل",notes:"ملاحظة للمعمل (اختياري)",notesPh:"مثال: الرجاء توصيل اللبن صباحاً باكراً",itemsCount:"عدد الأصناف",cartonsCount:"مجموع الكراتين",total:"المجموع",
+limitWarn:"تنبيه: هذا الطلب يتجاوز حد الدين المحدد لك. سيتواصل معك المعمل قبل الإرسال.",submit:"إرسال الطلب",saveWeekly:"احفظه كقائمتي الأسبوعية",
+sat:"السبت",tue:"الثلاثاء",fri:"الجمعة",mon:"الاثنين",
+weeklyTitle:"قائمتي الأسبوعية",weeklySub:"المنتجات التي تشتريها كل أسبوع. عدّلها وحوّلها إلى طلب بضغطة واحدة.",autoRepeat:"إرسال تلقائي كل أسبوع",autoRepeatSub:"إذا لم تغيّر شيئاً تُرسل القائمة تلقائياً، ونذكّرك قبلها بيوم.",autoInfo:"✓ مفعّل — الإرسال القادم: الجمعة، ٨ مساءً",loadWeekly:"اجعلها طلب هذا الأسبوع",weeklyEmpty:"قائمتك الأسبوعية فارغة. احفظها من صفحة الطلب.",
+accountTitle:"الحساب والكشف",accountSub:"الديون والدفعات وسجل الطلبات.",lastPayment:"آخر دفعة",ordersMonth:"طلبات هذا الشهر",orders:"طلباتي",paid:"مدفوع",unpaid:"غير مدفوع",
+st_received:"تم الاستلام",st_prep:"قيد التجهيز",st_out:"في الطريق",st_done:"تم التوصيل",
+factoryBtn:"عرض لوحة المعمل (للمدير)",logout:"تسجيل الخروج",
+factoryTitle:"لوحة المعمل",factorySub:"كل طلبات الأسبوع في مكان واحد — لتخطيط الإنتاج وتحميل السيارات.",kOrders:"طلبات هذا الأسبوع",kShops:"محلات نشطة",kCartons:"مجموع الكراتين",kDebt:"مجموع ديون السوق",
+needProduce:"الكمية المطلوب إنتاجها (كرتونة)",byArea:"الطلبات حسب المنطقة",shops:"محل",ordersW:"طلب",incoming:"الطلبات الجديدة",next:"الخطوة التالية",backShop:"العودة لواجهة المحل",
+toastAdded:"أُضيف إلى الطلب",toastWeekly:"تمت إضافة القائمة الأسبوعية إلى الطلب",toastSaved:"حُفظت كقائمة أسبوعية",toastEmpty:"أضف منتجات أولاً",toastStatus:"تم تحديث حالة الطلب",
+successTitle:"تم استلام طلبك!",successBody:"رقم الطلب: {n}. سيتم التوصيل يوم {d}. ستصلك رسالة تأكيد على هاتفك.",ok:"حسناً",today:"اليوم",cartonsW:"كرتونة"},
+en:{demoBar:"Proposed demo by Mhamad Tahir — products, prices and shop names are sample data only",brand:"Rasan",brandShop:"Retailer ordering portal",brandFactory:"Factory dashboard",
+loginTitle:"Welcome to the Rasan ordering portal",loginSub:"Markets and shops send their weekly orders here — no phone calls, no mistakes.",phone:"Mobile number",code:"Shop code",loginBtn:"Sign in as a shop",loginFactory:"Sign in as factory manager",loginNote:"For the demo, just tap one of the buttons.",
+shopName:"Sample Market — Halabja",factoryName:"Sales manager — Rasan factory",
+navHome:"Home",navProducts:"Products",navCart:"Order",navWeekly:"Weekly",navAccount:"Account",
+hello:"Welcome back 👋",helloSub:"Everything about your orders, in one place.",weekNotSent:"You haven't sent this week's order yet",weekNotSentSub:"Cutoff for {d} delivery: the day before, 8 PM.",weekSent:"This week's order has been sent",
+nextDelivery:"Next delivery",areaName:"Halabja",deliveryDays:"Delivery days for your area: Saturday & Tuesday.",cutoff:"Order cutoff: the day before, 8 PM.",
+quickWeekly:"Repeat my weekly order",quickWeeklySub:"One tap moves your standing list into the order.",browse:"Browse all products",browseSub:"Yogurt, cheese, ayran, oil and more",
+balance:"Balance due",limit:"Credit limit",of:"of",
+products:"Products",productsSub:"Wholesale prices, per carton.",search:"Search products…",all:"All",carton:"carton",pcs:"pcs",add:"Add",noResults:"No products found.",
+cartTitle:"This week's order",cartSub:"Review, pick a delivery day and send.",cartEmpty:"No products selected yet.",goProducts:"Go to products",
+deliveryDay:"Delivery day",notes:"Note to the factory (optional)",notesPh:"e.g. please deliver the yogurt early",itemsCount:"Products",cartonsCount:"Total cartons",total:"Total",
+limitWarn:"Note: this order takes you over your credit limit. The factory will contact you before dispatch.",submit:"Send order",saveWeekly:"Save as my weekly list",
+sat:"Saturday",tue:"Tuesday",fri:"Friday",mon:"Monday",
+weeklyTitle:"My weekly list",weeklySub:"What you buy every week. Edit it and turn it into an order in one tap.",autoRepeat:"Auto-send every week",autoRepeatSub:"If you change nothing, the list is sent automatically — with a reminder the day before.",autoInfo:"✓ On — next send: Friday, 8 PM",loadWeekly:"Use it for this week's order",weeklyEmpty:"Your weekly list is empty. Save one from the order page.",
+accountTitle:"Account & statement",accountSub:"Debt, payments and order history.",lastPayment:"Last payment",ordersMonth:"Orders this month",orders:"My orders",paid:"Paid",unpaid:"Unpaid",
+st_received:"Received",st_prep:"Preparing",st_out:"Out for delivery",st_done:"Delivered",
+factoryBtn:"Open factory dashboard (manager)",logout:"Sign out",
+factoryTitle:"Factory dashboard",factorySub:"Every order of the week in one place — for production planning and truck loading.",kOrders:"Orders this week",kShops:"Active shops",kCartons:"Total cartons",kDebt:"Market receivables",
+needProduce:"Production needed (cartons)",byArea:"Orders by area",shops:"shops",ordersW:"orders",incoming:"Incoming orders",next:"Next step",backShop:"Back to shop view",
+toastAdded:"Added to order",toastWeekly:"Weekly list loaded into your order",toastSaved:"Saved as weekly list",toastEmpty:"Add products first",toastStatus:"Order status updated",
+successTitle:"Order received!",successBody:"Order no. {n}. Delivery on {d}. A confirmation SMS is on its way.",ok:"OK",today:"Today",cartonsW:"cartons"}
+};
+
+const CATS=[
+{id:'yogurt',e:'🥣',bg:'#eaf0ff',n:{ku:'ماست',ar:'لبن',en:'Yogurt'}},
+{id:'cheese',e:'🧀',bg:'#fff4d6',n:{ku:'پەنیر',ar:'جبن',en:'Cheese'}},
+{id:'ayran',e:'🥛',bg:'#e7f7f3',n:{ku:'دۆ',ar:'شنينة',en:'Ayran'}},
+{id:'labneh',e:'🍶',bg:'#f6eefc',n:{ku:'لەبنە و قەیماخ',ar:'لبنة وقيمر',en:'Labneh & qaymar'}},
+{id:'oil',e:'🫒',bg:'#eef6e3',n:{ku:'زەیتی زەیتون',ar:'زيت زيتون',en:'Olive oil'}},
+{id:'vinegar',e:'🍎',bg:'#fdeceb',n:{ku:'سرکەی سێو',ar:'خل تفاح',en:'Apple vinegar'}},
+{id:'molasses',e:'🍯',bg:'#fbefe6',n:{ku:'دۆشاوی هەنار',ar:'دبس رمان',en:'Pomegranate molasses'}},
+{id:'soap',e:'🧼',bg:'#e9f3fb',n:{ku:'ساپوون',ar:'صابون',en:'Soap'}}];
+
+const P=[
+{id:'y1',c:'yogurt',pk:6,pr:21000,n:{ku:'ماستی پڕچەوری ١ کگم',ar:'لبن كامل الدسم ١ كغم',en:'Full-fat yogurt 1 kg'}},
+{id:'y2',c:'yogurt',pk:6,pr:20000,n:{ku:'ماستی کەمچەوری ١ کگم',ar:'لبن قليل الدسم ١ كغم',en:'Low-fat yogurt 1 kg'}},
+{id:'y3',c:'yogurt',pk:12,pr:21000,n:{ku:'ماست ٥٠٠ گم',ar:'لبن ٥٠٠ غم',en:'Yogurt 500 g'}},
+{id:'y4',c:'yogurt',pk:4,pr:34000,n:{ku:'ماستی سەتڵ ٣ کگم',ar:'لبن سطل ٣ كغم',en:'Yogurt bucket 3 kg'}},
+{id:'c1',c:'cheese',pk:12,pr:54000,n:{ku:'پەنیری سپی ٥٠٠ گم',ar:'جبن أبيض ٥٠٠ غم',en:'White cheese 500 g'}},
+{id:'c2',c:'cheese',pk:24,pr:48000,n:{ku:'پەنیری نەرم ٢٠٠ گم',ar:'جبن قابل للدهن ٢٠٠ غم',en:'Cream cheese 200 g'}},
+{id:'a1',c:'ayran',pk:24,pr:12000,n:{ku:'دۆ ٢٥٠ مل',ar:'شنينة ٢٥٠ مل',en:'Ayran 250 ml'}},
+{id:'a2',c:'ayran',pk:6,pr:9000,n:{ku:'دۆ ١ لیتر',ar:'شنينة ١ لتر',en:'Ayran 1 L'}},
+{id:'l1',c:'labneh',pk:12,pr:42000,n:{ku:'لەبنە ٤٠٠ گم',ar:'لبنة ٤٠٠ غم',en:'Labneh 400 g'}},
+{id:'l2',c:'labneh',pk:12,pr:45000,n:{ku:'قەیماخ ٢٠٠ گم',ar:'قيمر ٢٠٠ غم',en:'Qaymar 200 g'}},
+{id:'o1',c:'oil',pk:12,pr:120000,n:{ku:'زەیتی زەیتون ٥٠٠ مل',ar:'زيت زيتون ٥٠٠ مل',en:'Olive oil 500 ml'}},
+{id:'o2',c:'oil',pk:6,pr:110000,n:{ku:'زەیتی زەیتون ١ لیتر',ar:'زيت زيتون ١ لتر',en:'Olive oil 1 L'}},
+{id:'v1',c:'vinegar',pk:12,pr:36000,n:{ku:'سرکەی سێو ٥٠٠ مل',ar:'خل تفاح ٥٠٠ مل',en:'Apple vinegar 500 ml'}},
+{id:'m1',c:'molasses',pk:12,pr:60000,n:{ku:'دۆشاوی هەنار ٣٠٠ گم',ar:'دبس رمان ٣٠٠ غم',en:'Pomegranate molasses 300 g'}},
+{id:'s1',c:'soap',pk:24,pr:36000,n:{ku:'ساپوونی زەیتی زەیتون',ar:'صابون زيت الزيتون',en:'Olive oil soap'}}];
+const PM=Object.fromEntries(P.map(p=>[p.id,p]));
+const CM=Object.fromEntries(CATS.map(c=>[c.id,c]));
+
+const AREAS=[{n:{ku:'سلێمانی',ar:'السليمانية',en:'Sulaymaniyah'},s:42,o:57},{n:{ku:'هەڵەبجە',ar:'حلبجة',en:'Halabja'},s:18,o:24},{n:{ku:'هەولێر',ar:'أربيل',en:'Erbil'},s:15,o:19},{n:{ku:'کەلار',ar:'كلار',en:'Kalar'},s:9,o:11},{n:{ku:'دهۆک',ar:'دهوك',en:'Duhok'},s:6,o:7}];
+const STAT=['received','prep','out','done'];
+const SPILL={received:'p-blue',prep:'p-warn',out:'p-warn',done:'p-ok'};
+
+let S={lang:'ku',role:'shop',view:'home',cat:'all',day:'sat',cart:{},auto:true,
+weekly:{y1:4,y3:6,a1:5,c1:2,l1:2},balance:680000,limit:2000000,sentThisWeek:false,
+orders:[{id:'RS-1042',d:-7,day:'sat',cartons:19,total:680000,st:'done',paid:false},{id:'RS-1031',d:-14,day:'sat',cartons:16,total:545000,st:'done',paid:true},{id:'RS-1019',d:-21,day:'tue',cartons:18,total:610000,st:'done',paid:true}],
+base:{y1:180,y2:95,y3:240,y4:40,c1:110,c2:60,a1:210,a2:85,l1:70,l2:55,o1:38,o2:22,v1:30,m1:26,s1:18},
+incoming:[{id:'RS-1061',shop:{ku:'فرۆشگای #12 — سلێمانی',ar:'محل #12 — السليمانية',en:'Shop #12 — Sulaymaniyah'},cartons:34,total:1210000,st:'received'},
+{id:'RS-1058',shop:{ku:'سوپەرمارکێتی #4 — کەلار',ar:'سوبرماركت #4 — كلار',en:'Supermarket #4 — Kalar'},cartons:22,total:790000,st:'prep'},
+{id:'RS-1055',shop:{ku:'مارکێتی #27 — هەولێر',ar:'ماركت #27 — أربيل',en:'Market #27 — Erbil'},cartons:41,total:1460000,st:'out'}]};
+
+try{const l=localStorage.getItem('rasan_demo_lang');if(l&&L[l])S.lang=l}catch(e){}
+
+const t=k=>(L[S.lang]&&L[S.lang][k])||L.ku[k]||k;
+const loc=()=>S.lang==='en'?'en-US':'ar-IQ';
+const num=n=>Number(n).toLocaleString(loc());
+const money=n=>num(n)+' '+(S.lang==='en'?'IQD':'د.ع');
+const nm=o=>o[S.lang]||o.ku;
+const $=id=>document.getElementById(id);
+const KUM=['کانوونی دووەم','شوبات','ئازار','نیسان','ئایار','حوزەیران','تەممووز','ئاب','ئەیلوول','تشرینی یەکەم','تشرینی دووەم','کانوونی یەکەم'];
+function dateTxt(off){const d=new Date();d.setDate(d.getDate()+off);if(off===0)return t('today');if(S.lang==='ku')return num(d.getDate())+'ی '+KUM[d.getMonth()];try{return d.toLocaleDateString(S.lang==='en'?'en-GB':S.lang==='ar'?'ar-IQ':'ckb-IQ',{day:'numeric',month:'long'})}catch(e){return d.toLocaleDateString('ar-IQ',{day:'numeric',month:'long'})}}
+
+function setLang(l){S.lang=l;try{localStorage.setItem('rasan_demo_lang',l)}catch(e){}
+document.documentElement.lang=l==='ku'?'ckb':l;document.documentElement.dir=l==='en'?'ltr':'rtl';renderAll()}
+
+function renderStatic(){
+document.querySelectorAll('[data-t]').forEach(el=>el.textContent=t(el.dataset.t));
+document.querySelectorAll('[data-tp]').forEach(el=>el.placeholder=t(el.dataset.tp));
+document.querySelectorAll('[data-langs]').forEach(w=>{w.innerHTML=['ku','ar','en'].map(l=>`<button class="${l===S.lang?'on':''}" onclick="setLang('${l}')">${{ku:'کوردی',ar:'عربي',en:'EN'}[l]}</button>`).join('')});
+document.title=S.lang==='en'?'Rasan — Retailer portal (demo)':S.lang==='ar'?'راسان — بوابة المحلات (تجريبي)':'ڕاسان — پۆرتاڵی فرۆشگاکان (دیمۆ)';
+$('brandSub').textContent=S.role==='factory'?t('brandFactory'):t('brandShop');
+$('whoName').textContent=S.role==='factory'?t('factoryName'):t('shopName');
+document.querySelectorAll('.logo').forEach(l=>l.textContent=S.lang==='en'?'R':S.lang==='ar'?'ر':'ڕ');
+}
+
+function cartStats(){let c=0,tot=0,k=0;for(const[id,q]of Object.entries(S.cart)){if(q>0){k++;c+=q;tot+=q*PM[id].pr}}return{k,c,tot}}
+
+function stepper(id,q,fn){return q>0?`<div class="step"><button onclick="${fn}('${id}',-1)">−</button><span>${num(q)}</span><button onclick="${fn}('${id}',1)">+</button></div>`:`<button class="addbtn" onclick="${fn}('${id}',1)">${t('add')}</button>`}
+function prodInfo(p){return `${t('carton')} · ${num(p.pk)} ${t('pcs')}`}
+
+function renderProducts(){
+$('cats').innerHTML=[{id:'all',n:{ku:t('all'),ar:t('all'),en:t('all')},e:''}].concat(CATS).map(c=>`<button class="chip ${S.cat===c.id?'on':''}" onclick="S.cat='${c.id}';renderProducts()">${c.e?c.e+' ':''}${nm(c.n)}</button>`).join('');
+const q=($('q').value||'').trim().toLowerCase();
+const list=P.filter(p=>(S.cat==='all'||p.c===S.cat)&&(!q||Object.values(p.n).some(v=>v.toLowerCase().includes(q))||Object.values(CM[p.c].n).some(v=>v.toLowerCase().includes(q))));
+$('plist').innerHTML=list.length?list.map(p=>{const c=CM[p.c];return `<div class="prod"><div class="tile" style="background:${c.bg}">${c.e}</div><div class="info"><b>${nm(p.n)}</b><div class="muted">${prodInfo(p)}</div><div class="price">${money(p.pr)}</div></div>${stepper(p.id,S.cart[p.id]||0,'addCart')}</div>`}).join(''):`<div class="empty">${t('noResults')}</div>`;
+}
+
+function addCart(id,d){const q=Math.max(0,(S.cart[id]||0)+d);if(q)S.cart[id]=q;else delete S.cart[id];if(d>0&&q===1)toast(t('toastAdded'));renderProducts();renderCart();renderBadge()}
+function addWeekly(id,d){const q=Math.max(0,(S.weekly[id]||0)+d);if(q)S.weekly[id]=q;else delete S.weekly[id];renderWeekly()}
+
+function renderBadge(){const{c}=cartStats();const b=$('badge');b.textContent=num(c);b.style.display=c?'grid':'none'}
+
+function renderCart(){
+const ids=Object.keys(S.cart);
+if(!ids.length){$('cartItems').innerHTML=`<div class="empty"><div class="e">🛒</div>${t('cartEmpty')}<div style="height:12px"></div><button class="btn sm" style="margin:auto" onclick="go('products')">${t('goProducts')}</button></div>`;$('cartRest').style.display='none';return}
+$('cartRest').style.display='block';
+$('cartItems').innerHTML=ids.map(id=>{const p=PM[id],c=CM[p.c];return `<div class="line-item"><div class="tile" style="background:${c.bg};width:44px;height:44px;font-size:22px">${c.e}</div><div class="info"><b>${nm(p.n)}</b><span class="muted">${money(p.pr*S.cart[id])}</span></div>${stepper(id,S.cart[id],'addCart')}</div>`}).join('');
+$('days').innerHTML=['sat','tue'].map((d,i)=>`<button class="day ${S.day===d?'on':''}" onclick="S.day='${d}';renderCart()"><b>${t(d)}</b><span class="muted">${dateTxt(nextOff(d))}</span></button>`).join('');
+const s=cartStats();$('sCount').textContent=num(s.k);$('sCartons').textContent=num(s.c);$('sTotal').textContent=money(s.tot);
+$('limitWarn').style.display=(S.balance+s.tot>S.limit)?'block':'none';
+}
+function nextOff(d){const target=d==='sat'?6:2;const now=new Date().getDay();let off=(target-now+7)%7;if(off===0)off=7;return off}
+
+function renderWeekly(){
+$('autoTog').classList.toggle('on',S.auto);$('autoInfo').style.display=S.auto?'inline-block':'none';
+const ids=Object.keys(S.weekly);
+$('weeklyItems').innerHTML=ids.length?ids.map(id=>{const p=PM[id],c=CM[p.c];return `<div class="line-item"><div class="tile" style="background:${c.bg};width:44px;height:44px;font-size:22px">${c.e}</div><div class="info"><b>${nm(p.n)}</b><span class="muted">${prodInfo(p)}</span></div>${stepper(id,S.weekly[id],'addWeekly')}</div>`}).join('')+`<div class="sum t"><span>${t('total')}</span><span>${money(ids.reduce((a,id)=>a+PM[id].pr*S.weekly[id],0))}</span></div>`:`<div class="empty">${t('weeklyEmpty')}</div>`;
+}
+function toggleAuto(){S.auto=!S.auto;renderWeekly()}
+function loadWeekly(){if(!Object.keys(S.weekly).length){toast(t('weeklyEmpty'));return}S.cart={...S.weekly};toast(t('toastWeekly'));renderAll();go('cart')}
+function saveWeekly(){if(!Object.keys(S.cart).length){toast(t('toastEmpty'));return}S.weekly={...S.cart};toast(t('toastSaved'));renderWeekly()}
+
+function balHTML(){const pct=Math.min(100,Math.round(S.balance/S.limit*100));return `<div class="muted">${t('balance')}</div><div class="big">${money(S.balance)}</div><div class="bar"><i style="width:${pct}%"></i></div><div class="muted" style="margin-top:6px">${t('limit')}: ${money(S.limit)}</div>`}
+
+function renderHome(){
+const nd=S.sentThisWeek?S.orders[0].day:'sat';
+$('nextDay').textContent=`${t(nd)} · ${dateTxt(nextOff(nd))}`;
+if(S.sentThisWeek){const o=S.orders[0];$('weekStatus').innerHTML=`<div class="card" style="border-color:#bfe8d6"><div class="row"><b>✓ ${t('weekSent')}</b><span class="pill ${SPILL[o.st]}">${t('st_'+o.st)}</span></div><p class="muted">${o.id} · ${num(o.cartons)} ${t('cartonsW')} · ${money(o.total)}</p></div>`}
+else $('weekStatus').innerHTML=`<div class="card" style="background:var(--warnbg);border-color:#f5d9b0"><b style="color:var(--warn)">${t('weekNotSent')}</b><p class="muted">${t('weekNotSentSub').replace('{d}',t('sat'))}</p></div>`;
+$('balCard').innerHTML=balHTML();
+}
+
+function renderAccount(){
+$('balCard2').innerHTML=balHTML();$('lastPay').textContent=money(545000);$('ordMonth').textContent=num(S.orders.length);
+$('orderList').innerHTML=S.orders.map(o=>`<div class="order"><div class="row"><b>${o.id}</b><span class="pill ${SPILL[o.st]}">${t('st_'+o.st)}</span></div><div class="row muted"><span>${dateTxt(o.d)} · ${num(o.cartons)} ${t('cartonsW')}</span><span>${money(o.total)}</span></div><div style="margin-top:4px"><span class="pill ${o.paid?'p-ok':'p-bad'}">${o.paid?t('paid'):t('unpaid')}</span></div></div>`).join('');
+}
+
+function renderFactory(){
+const tot={...S.base};S.incoming.forEach(o=>{if(o.items)for(const[id,q]of Object.entries(o.items))tot[id]=(tot[id]||0)+q});
+const cartons=Object.values(tot).reduce((a,b)=>a+b,0);
+const ordersN=AREAS.reduce((a,b)=>a+b.o,0)+S.incoming.filter(o=>o.items).length;
+$('kpis').innerHTML=[[t('kOrders'),num(ordersN)],[t('kShops'),num(AREAS.reduce((a,b)=>a+b.s,0))],[t('kCartons'),num(cartons)],[t('kDebt'),money(48650000+S.balance-680000)]].map(k=>`<div class="kpi"><div class="muted">${k[0]}</div><div class="big" style="${k[1].length>10?'font-size:15px':''}">${k[1]}</div></div>`).join('');
+const top=Object.entries(tot).sort((a,b)=>b[1]-a[1]);const max=top[0][1];
+$('produce').innerHTML=top.map(([id,q])=>`<div class="hbar"><div class="row"><span>${CM[PM[id].c].e} ${nm(PM[id].n)}</span><b>${num(q)}</b></div><div class="bar"><i style="width:${Math.round(q/max*100)}%"></i></div></div>`).join('');
+$('areas').innerHTML=AREAS.map(a=>`<div class="area"><span>📍 ${nm(a.n)}</span><span class="muted">${num(a.s)} ${t('shops')}</span><span class="n">${num(a.o)} ${t('ordersW')}</span></div>`).join('');
+$('incoming').innerHTML=S.incoming.map((o,i)=>`<div class="order"><div class="row"><b>${o.id}</b><span class="pill ${SPILL[o.st]}">${t('st_'+o.st)}</span></div><div class="muted">${nm(o.shop)}</div><div class="row"><span class="muted">${num(o.cartons)} ${t('cartonsW')} · ${money(o.total)}</span>${o.st!=='done'?`<button class="btn sm ghost" onclick="advance(${i})">${t('next')}</button>`:''}</div></div>`).join('');
+}
+function advance(i){const o=S.incoming[i];o.st=STAT[Math.min(3,STAT.indexOf(o.st)+1)];if(o.mine){const m=S.orders.find(x=>x.id===o.id);if(m)m.st=o.st}toast(t('toastStatus'));renderAll()}
+
+function submitOrder(){
+const s=cartStats();if(!s.c){toast(t('toastEmpty'));return}
+const id='RS-'+(1062+S.orders.length);
+S.orders.unshift({id,d:0,day:S.day,cartons:s.c,total:s.tot,st:'received',paid:false});
+S.incoming.unshift({id,mine:true,shop:{ku:L.ku.shopName,ar:L.ar.shopName,en:L.en.shopName},cartons:s.c,total:s.tot,st:'received',items:{...S.cart}});
+S.balance+=s.tot;S.sentThisWeek=true;S.cart={};$('notes').value='';
+$('successBody').textContent=t('successBody').replace('{n}',id).replace('{d}',t(S.day));
+$('modal').classList.add('on');renderAll();
+}
+function closeModal(){$('modal').classList.remove('on');go('home')}
+
+function go(v){S.view=v;document.querySelectorAll('.view').forEach(x=>x.classList.toggle('on',x.id==='v-'+v));
+document.querySelectorAll('nav.bottom [data-go]').forEach(b=>b.classList.toggle('on',b.dataset.go===v));
+$('nav').style.display=S.role==='factory'?'none':'block';window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('nav.bottom [data-go]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.go)));
+
+function loginShop(){S.role='shop';$('login').style.display='none';$('app').style.display='block';$('topbar').classList.remove('fbanner');renderAll();go('home')}
+function loginFactory(){S.role='factory';$('login').style.display='none';$('app').style.display='block';$('topbar').classList.add('fbanner');renderAll();go('factory')}
+function backToShop(){loginShop()}
+function logout(){$('app').style.display='none';$('login').style.display='block';window.scrollTo(0,0)}
+
+let tt;function toast(m){const e=$('toast');e.textContent=m;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),1800)}
+
+function renderAll(){renderStatic();renderProducts();renderCart();renderWeekly();renderHome();renderAccount();renderFactory();renderBadge()}
+setLang(S.lang);
+</script>
+</body>
+</html>
