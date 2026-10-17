@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ckb" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>پێشنیار بۆ کارگەی ڕاسان — گەشەپێدانی ماڵپەڕ و پۆرتاڵی داواکاری</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#0033A1;--sky:#eaf0ff;--ink:#14213d;--muted:#5f6982;--line:#e3e7ef;--cream:#f7f5f0;--red:#b42318;--redbg:#fdecea;--amber:#a85607;--amberbg:#fff2df;--green:#11795a;--greenbg:#e2f5ed}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans Arabic',system-ui,sans-serif;background:var(--cream);color:var(--ink);font-size:16px;line-height:1.85}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 48px}
+.cover{background:linear-gradient(160deg,var(--blue),#0a1f63);color:#fff;padding:36px 22px 30px;border-radius:0 0 28px 28px;margin:0 -16px 24px}
+.cover small{opacity:.8;font-size:13px;letter-spacing:.3px}
+.cover h1{font-size:25px;line-height:1.5;margin:10px 0 12px}
+.cover p{opacity:.9;font-size:15px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.meta span{background:rgba(255,255,255,.14);border-radius:99px;padding:4px 12px;font-size:12.5px}
+section{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px 18px;margin-bottom:16px}
+h2{font-size:19px;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+h2 .n{width:30px;height:30px;border-radius:9px;background:var(--sky);color:var(--blue);display:grid;place-items:center;font-size:15px;flex:none}
+h3{font-size:16px;margin:16px 0 8px}
+p{margin-bottom:10px}
+ul{padding-inline-start:20px;margin-bottom:10px}
+li{margin-bottom:6px}
+.muted{color:var(--muted);font-size:14px}
+.issue{border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+.issue b{display:block;margin-bottom:2px}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;border-radius:99px;padding:1px 9px;margin-inline-start:6px;vertical-align:middle}
+.t-h{background:var(--redbg);color:var(--red)}
+.t-m{background:var(--amberbg);color:var(--amber)}
+.t-l{background:var(--sky);color:var(--blue)}
+code{background:#f1f3f8;border-radius:6px;padding:1px 6px;font-size:13.5px;direction:ltr;unicode-bidi:embed}
+.ex{background:#fafbfd;border-inline-start:3px solid var(--line);padding:6px 10px;border-radius:6px;font-size:14px;color:var(--muted);margin-top:6px}
+.grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:620px){.grid{grid-template-columns:1fr 1fr}}
+.feat{background:var(--sky);border-radius:14px;padding:14px}
+.feat b{color:var(--blue);display:block;margin-bottom:4px}
+.feat p{font-size:14.5px;margin:0}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:start;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f6f8fc;font-size:13px;color:var(--muted)}
+.ok{background:var(--greenbg);color:var(--green);border-radius:14px;padding:14px;font-size:15px}
+.cta{background:var(--blue);color:#fff;border:0}
+.cta h2{color:#fff}
+.cta h2 .n{background:rgba(255,255,255,.18);color:#fff}
+.cta a{color:#fde68a}
+footer{text-align:center;color:var(--muted);font-size:13px;margin-top:20px}
+@media print{body{background:#fff}.cover{border-radius:0}section{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="cover">
+  <small>پێشنیارێکی کاری · تایبەت بە بەڕێوەبەرایەتی کارگەی ڕاسان</small>
+  <h1>گەشەپێدانی ماڵپەڕی ڕاسان و دروستکردنی پۆرتاڵی داواکاری هەفتانە بۆ مارکێت و فرۆشگاکان</h1>
+  <p>ماڵپەڕێک کە بە تەواوی بە کوردی و عەرەبی کار بکات، و سیستەمێک کە فرۆشگاکان بتوانن خۆیان داواکاری هەفتانەیان بنێرن — بەبێ تەلەفۆن، بەبێ هەڵە، و بە ڕاپۆرتی ڕاستەوخۆ بۆ کارگە.</p>
+  <div class="meta"><span>ئامادەکراوە لەلایەن: Mhamad Tahir</span><span>تشرینی یەکەمی ٢٠٢٦</span><span>دیمۆی کارپێکراو هاوپێچە</span></div>
+</header>
+
+<section>
+  <h2><span class="n">١</span>پوختە</h2>
+  <p>ڕاسان یەکێکە لە براندە ناوخۆییە بەهێزەکانی هەرێم: بەرهەمی جۆراوجۆر، کێڵگەی تایبەت، و چیرۆکێکی جوان لە دڵی شارەزوورەوە. بەڵام ماڵپەڕەکەی ئێستا ئەم هێزە نیشان نادات، و هیچ ڕێگایەک نییە بۆ ئەوەی کڕیارانی جوملە (مارکێت و فرۆشگاکان) لە ڕێگەیەوە داواکاری بکەن.</p>
+  <p>دوای پشکنینی ماڵپەڕی <code>rasan.iq</code>، ئەم پێشنیارە سێ بەش لەخۆ دەگرێت:</p>
+  <ul>
+    <li><b>چاککردنی ماڵپەڕی ئێستا</b> — بەتایبەتی وەشانی کوردی کە بە نیوەچڵی ماوەتەوە.</li>
+    <li><b>پۆرتاڵی داواکاری فرۆشگاکان</b> — بۆ داواکاری هەفتانە، دووبارەکردنەوەی داواکاری، و بینینی قەرز و حیساب.</li>
+    <li><b>داشبۆردی کارگە</b> — بۆ بینینی هەموو داواکارییەکان لە یەک شوێن، پلانی بەرهەمهێنان، و بەدواداچوونی گەیاندن.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">٢</span>ئەوەی لە ماڵپەڕی ئێستادا دۆزرایەوە</h2>
+  <p class="muted">ئەم خاڵانە لە ڕێکەوتی ١٧ی تشرینی یەکەمی ٢٠٢٦ پشکنراون. هەر خاڵێک نموونەیەکی ڕاستەقینەی لەگەڵدایە.</p>
+
+  <h3>أ) وەشانی کوردی ناتەواوە</h3>
+  <div class="issue"><b>ناونیشانە سەرەکییەکان بە ئینگلیزی دەمێننەوە <span class="tag t-h">گرنگ</span></b>
+    کاتێک زمان دەگۆڕدرێت بۆ کوردی، زۆربەی بەشەکانی پەڕەی سەرەکی وەرناگێڕدرێن.
+    <div class="ex">نموونە: «From our local farms to your table»، «Our products»، «Recipes»، «Endorsements»، «SETTING NEW STANDARDS IN DAIRY».</div></div>
+  <div class="issue"><b>ڕێچەتەکان و قسەی کڕیاران تەنها ئینگلیزین <span class="tag t-h">گرنگ</span></b>
+    هەموو ڕێچەتەکان و هەر چوار قسەی کڕیاران (Chef Hozan و ئەوانی تر) لە وەشانی کوردیدا هەر بە ئینگلیزین — لە کاتێکدا بینەری سەرەکی ڕاسان کوردن.</div>
+  <div class="issue"><b>عەرەبی لەناو وەشانی کوردیدا <span class="tag t-h">گرنگ</span></b>
+    لە فووتەری کوردیدا هەندێک لینک بە عەرەبی نووسراون.
+    <div class="ex">نموونە: «الوظائف» و «مزرعة راسان للأبقار».</div></div>
+  <div class="issue"><b>وەرگێڕانی هەڵە <span class="tag t-m">مامناوەند</span></b>
+    <div class="ex">«Testimonials» کراوە بە «ڕێکلامەکان» (واتە: ڕیکلام). «View Recipes» کراوە بە «بینینی خواردنەوەکان» (واتە: شتی خواردنەوە). «Environment friendly factory» هەر وەرنەگێڕدراوە.</div></div>
+  <div class="issue"><b>ناوی هەڵەی بەرهەم لە لیستی بەرهەمەکاندا <span class="tag t-m">مامناوەند</span></b>
+    لە فووتەری کوردیدا گروپی ساپوون ناوی «مۆلاسی هەنار»ی لێنراوە، کەواتە «مۆلاسی هەنار» دووجار دەردەکەوێت و ساپوون نییە. زەیتی زەیتونیش تەنها نووسراوە «زیتون».</div>
+  <div class="issue"><b>لینکی خاو لە جیاتی ناو <span class="tag t-m">مامناوەند</span></b>
+    لە جیاتی «کێڵگەی بزنی ڕاسان»، ڕاستەوخۆ ئەم دەقە دەردەکەوێت: <code>/ku/about-us#rasan-goat-farm</code></div>
+
+  <h3>ب) کێشەی تەکنیکی و SEO</h3>
+  <div class="issue"><b>لینکی «هەلی کار» جیاوازە لە نێوان زمانەکاندا <span class="tag t-m">مامناوەند</span></b>
+    لە ئینگلیزیدا <code>/careers</code>ە و لە کوردیدا <code>/career</code>. ئەگەری زۆرە یەکێکیان پەڕەی هەڵە (404) بێت.</div>
+  <div class="issue"><b>لینکی سەرەکی لە فووتەری کوردیدا نییە <span class="tag t-l">بچووک</span></b>
+    لینکەکانی «سەرەکی»، «دەربارەی ئێمە» و «پەیوەندی» لە فووتەری ئینگلیزیدا هەن، بەڵام لە کوردیدا نەماون.</div>
+  <div class="issue"><b>Google کوردی و عەرەبی ناناسێتەوە <span class="tag t-m">مامناوەند</span></b>
+    ناونیشانی هەموو پەڕەکان تەنها «Home»ە و وەسفی پەڕەکە (meta description) تەنها ئینگلیزییە. بۆیە کەسێک کە بە کوردی یان عەرەبی بگەڕێت بۆ «ماستی هەڵەبجە» یان «لبن حلبجة»، ئەگەری کەمە ڕاسان ببینێت.</div>
+  <div class="issue"><b>هەڵەی کۆپی و نووسین <span class="tag t-l">بچووک</span></b>
+    هەر سێ ئامارەکەی پەڕەی سەرەکی (١٠٠٪ سروشتی، ١٠ هەزار م²، +٣٥ جۆر) هەمان ڕستەی وەسفیان هەیە. لە سەرەوەی پەڕەی کوردیدا «دەربارەیچیرۆکی» بەبێ بۆشایی نووسراوە. مافی بڵاوکردنەوە هێشتا «© 2020»ە.</div>
+  <div class="issue"><b>وێنە لە دۆمەینی دەرەکی و بێ پاراستن <span class="tag t-l">بچووک</span></b>
+    لۆگۆی سەرەتای بارکردن لە دۆمەینی کۆمپانیای گەشەپێدەرەوە و بە <code>http</code> (نەک <code>https</code>) بار دەبێت، کە دەکرێت لە هەندێک وێبگەڕدا نەبینرێت.</div>
+
+  <h3>ج) ئەوەی بە تەواوی نییە</h3>
+  <div class="issue"><b>هیچ بەشێک بۆ کڕیارانی جوملە نییە <span class="tag t-h">گەورەترین کەمی</span></b>
+    مارکێت و فرۆشگاکان ناتوانن ئەکاونت دروست بکەن، داواکاری بنێرن، داواکاری هەفتەی ڕابردوو دووبارە بکەنەوە، ڕۆژی گەیاندن بزانن، یان قەرز و پسوولەکانیان ببینن. هەموو ئەمانە ئێستا بە تەلەفۆن و کاغەز دەکرێن، کە کات دەبات و هەڵەی تێدەکەوێت.</div>
+  <div class="issue"><b>شوێنی فرۆشتن و دابەشکەرەکان نییە <span class="tag t-m">مامناوەند</span></b>
+    کڕیاری ئاسایی نازانێت لە کوێ بەرهەمی ڕاسان بکڕێت، و فرۆشگایەکی نوێ نازانێت چۆن ببێتە کڕیاری ڕاسان.</div>
+</section>
+
+<section>
+  <h2><span class="n">٣</span>چارەسەری پێشنیارکراو</h2>
+
+  <h3>قۆناغی یەکەم: چاککردنی ماڵپەڕی ئێستا</h3>
+  <ul>
+    <li>وەرگێڕانی تەواو و ڕاستی هەموو پەڕەکان بۆ کوردی (سۆرانی) و عەرەبی — بە زمانێکی سروشتی، نەک وەرگێڕانی وشە بە وشە.</li>
+    <li>چاککردنی هەموو لینکە شکاو و ناوە هەڵەکان.</li>
+    <li>ناونیشان و وەسفی جیاواز بۆ هەر پەڕە و هەر زمانێک، بۆ ئەوەی لە Google بدۆزرێتەوە.</li>
+    <li>پەڕەی «لە کوێ بکڕم؟» بە نەخشەی فرۆشگا و دابەشکەرەکان، و پەڕەی «ببە بە کڕیاری ڕاسان» بۆ فرۆشگا نوێیەکان.</li>
+  </ul>
+
+  <h3>قۆناغی دووەم: پۆرتاڵی داواکاری فرۆشگاکان</h3>
+  <div class="grid">
+    <div class="feat"><b>داواکاری بە چەند کرتەیەک</b><p>لیستی بەرهەمەکان بە نرخی جوملە بۆ هەر کارتۆنێک، گەڕان و پۆلێنکردن.</p></div>
+    <div class="feat"><b>لیستی هەفتانە</b><p>فرۆشگا لیستی هەمیشەیی خۆی پاشەکەوت دەکات و هەموو هەفتەیەک بە یەک کرتە دووبارەی دەکاتەوە — یان خۆکار دەنێردرێت.</p></div>
+    <div class="feat"><b>ڕۆژی گەیاندن بەپێی ناوچە</b><p>هەر ناوچەیەک ڕۆژی گەیاندنی خۆی و دوا کاتی ناردنی داواکاری هەیە.</p></div>
+    <div class="feat"><b>قەرز و حیساب</b><p>فرۆشگا قەرزی ماوە، سنووری قەرز، پارەدانەکان و مێژووی داواکارییەکانی دەبینێت.</p></div>
+    <div class="feat"><b>بەدواداچوونی داواکاری</b><p>وەرگیرا ← ئامادە دەکرێت ← لە ڕێگادایە ← گەیەنرا، لەگەڵ نامەی SMS یان WhatsApp.</p></div>
+    <div class="feat"><b>سێ زمان، لەسەر مۆبایل</b><p>کوردی، عەرەبی و ئینگلیزی، بە تەواوی. بۆ مۆبایل دیزاین کراوە چونکە خاوەن مارکێتەکان بە مۆبایل کار دەکەن.</p></div>
+  </div>
+
+  <h3>قۆناغی سێیەم: داشبۆردی کارگە</h3>
+  <ul>
+    <li>هەموو داواکارییەکانی هەفتە لە یەک شوێن، بەپێی ناوچە و بەپێی ئۆتۆمبێلی گەیاندن.</li>
+    <li><b>بڕی پێویست بۆ بەرهەمهێنان:</b> کۆی هەر بەرهەمێک کە بۆ هەفتەی داهاتوو داواکراوە، تا کارگە بزانێت چەند بەرهەم بهێنێت و چەندی بەفیڕۆ نەچێت.</li>
+    <li>کۆنترۆڵی قەرز: ئاگادارکردنەوە کاتێک فرۆشگایەک لە سنووری قەرزی خۆی تێدەپەڕێت.</li>
+    <li>ڕاپۆرت: باشترین بەرهەم، باشترین ناوچە، فرۆشگا ناچالاکەکان.</li>
+    <li>دەتوانرێت دواتر بە سیستەمی ژمێریاری ئێستای کارگە ببەسترێتەوە.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">٤</span>سوودەکان بۆ ڕاسان</h2>
+  <table>
+    <tr><th>ئێستا</th><th>دوای پۆرتاڵ</th></tr>
+    <tr><td>داواکاری بە تەلەفۆن و کاغەز وەردەگیرێت</td><td>فرۆشگا خۆی داواکاری دەنووسێت، هەڵەی نووسین نامێنێت</td></tr>
+    <tr><td>کارمەند کات بە وەرگرتنی داواکاری دەبات</td><td>هەمان کارمەند کات بۆ فرۆشتن و فرۆشگای نوێ دەبات</td></tr>
+    <tr><td>بڕی بەرهەمهێنان بە خەمڵاندنە</td><td>بڕی بەرهەمهێنان بەپێی داواکاری ڕاستەقینەیە، بەفیڕۆچوونی شیر و ماست کەم دەبێتەوە</td></tr>
+    <tr><td>قەرزی بازاڕ لە دەفتەردایە</td><td>قەرزی هەموو فرۆشگایەک ڕوونە، بۆ کارگە و بۆ فرۆشگاکەش</td></tr>
+    <tr><td>فرۆشگای نوێ ڕێگای پەیوەندی نازانێت</td><td>فرۆشگای نوێ لە ماڵپەڕەوە داوای بوون بە کڕیار دەکات</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2><span class="n">٥</span>دیمۆی کارپێکراو</h2>
+  <p>لەگەڵ ئەم پێشنیارەدا دیمۆیەکی کارپێکراوی پۆرتاڵەکە هاوپێچ کراوە (<code>rasan-portal-demo.html</code>). لەسەر هەر مۆبایلێک دەکرێتەوە و دەتوانن خۆتان تاقی بکەنەوە:</p>
+  <ul>
+    <li>چوونەژوورەوە وەک <b>فرۆشگا</b>: بەرهەم هەڵبژێرن، لیستی هەفتانە دووبارە بکەنەوە، ڕۆژی گەیاندن هەڵبژێرن و داواکاری بنێرن.</li>
+    <li>چوونەژوورەوە وەک <b>بەڕێوەبەری کارگە</b>: داواکارییەکەی خۆتان لە داشبۆردەکەدا دەبینن و دەتوانن دۆخەکەی بگۆڕن.</li>
+    <li>زمان بگۆڕن بۆ کوردی، عەرەبی یان ئینگلیزی — هەموو دەقێک وەردەگێڕدرێت.</li>
+  </ul>
+  <p class="muted">تێبینی: بەرهەم، نرخ و ناوی فرۆشگاکان لە دیمۆکەدا نموونەن، ڕاستەقینە نین.</p>
+</section>
+
+<section>
+  <h2><span class="n">٦</span>قۆناغەکان و ماوەی کار</h2>
+  <table>
+    <tr><th>قۆناغ</th><th>ناوەڕۆک</th><th>ماوەی خەمڵێنراو</th></tr>
+    <tr><td>١</td><td>چاککردنی ماڵپەڕ و وەرگێڕانی تەواو و SEO</td><td>١ – ٢ هەفتە</td></tr>
+    <tr><td>٢</td><td>پۆرتاڵی داواکاری فرۆشگاکان</td><td>٣ – ٤ هەفتە</td></tr>
+    <tr><td>٣</td><td>داشبۆردی کارگە و ڕاپۆرتەکان</td><td>٢ – ٣ هەفتە</td></tr>
+  </table>
+  <p class="muted" style="margin-top:10px">ماوەکان دوای دیاریکردنی پێداویستییە ڕاستەقینەکانی کارگە (ژمارەی فرۆشگا، ناوچەکان، شێوازی پارەدان) کۆتایی پێدێن. دەکرێت تەنها بە قۆناغی یەکەم دەست پێبکەین.</p>
+  <h3>نرخ</h3>
+  <p>نرخی هەر قۆناغێک دوای وەڵامی ئێوە بە نووسراوی پێشکەش دەکرێت، بەپێی ئەو بەشانەی کارگە دەیەوێت.</p>
+</section>
+
+<section class="cta">
+  <h2><span class="n">٧</span>هەنگاوی داهاتوو</h2>
+  <p>تکایە دیمۆکە لەسەر مۆبایلەکەتان تاقی بکەنەوە. ئەگەر بیرۆکەکەتان بەدڵ بوو، تەنها پەیامێکم بۆ بنێرن کە کام قۆناغتان دەوێت، یان کام بەش گرنگترە بۆتان. لەسەر ئەو بنەمایە، پلان و نرخێکی ورد بە نووسراوی پێشکەش دەکەم.</p>
+  <p style="margin-top:12px"><b>Mhamad Tahir</b> — گەشەپێدەری وێب<br>
+  نموونەی کارەکانم: <a href="https://muhammad-57v.pages.dev/ku">muhammad-57v.pages.dev</a></p>
+</section>
+
+<footer>ئەم بەڵگەنامەیە تەنها بۆ بەڕێوەبەرایەتی کارگەی ڕاسان ئامادە کراوە.</footer>
+</div>
+</body>
+</html>
